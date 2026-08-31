@@ -3,10 +3,10 @@ name: Auto Update Filters
 on:
   push:
     branches:
-      - main
+      - master
 
 concurrency:
-  group: update-main
+  group: update-master
   cancel-in-progress: false
 
 jobs:
