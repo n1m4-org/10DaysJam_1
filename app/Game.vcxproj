@@ -28,7 +28,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\framework\Game.cpp" />
+    <ClCompile Include="src\framework\ThirtySecBeforeDeadline.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\presentation\animation\RadialBeat.cpp" />
     <ClCompile Include="src\scene\factory\SceneFactory.cpp" />
@@ -40,7 +40,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\config\ResourcePath.h" />
-    <ClInclude Include="src\framework\Game.h" />
+    <ClInclude Include="src\framework\ThirtySecBeforeDeadline.h" />
     <ClInclude Include="src\logic\input\InputAction.h" />
     <ClInclude Include="src\presentation\animation\RadialBeat.h" />
     <ClInclude Include="src\scene\factory\SceneFactory.h" />
@@ -126,6 +126,7 @@ xcopy /E /I /Y "$(ProjectDir)..\module\NimaEngine\src\EngineResources" "$(Projec
       <LanguageStandard>stdcpp20</LanguageStandard>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <AdditionalIncludeDirectories>$(ProjectDir)src\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>/utf-8 %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
