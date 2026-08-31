@@ -1,4 +1,4 @@
-#include "Game.h"
+#include "ThirtySecBeforeDeadline.h"
 
 #include <Common/define.h>
 #include <Features/SceneManager/SceneManager.h>
@@ -9,7 +9,7 @@
 
 #pragma comment(lib, "Ws2_32.lib")
 
-void Game::Initialize()
+void ThirtySecBeforeDeadline::Initialize()
 {
     /// 基底クラスの初期化処理
     NimaFramework::Initialize();
@@ -43,13 +43,13 @@ void Game::Initialize()
     pTextureManager_->LoadTexture("noise0.png");
 }
 
-void Game::Finalize()
+void ThirtySecBeforeDeadline::Finalize()
 {
     /// 基底クラスの終了処理
     NimaFramework::Finalize();
 }
 
-void Game::Update()
+void ThirtySecBeforeDeadline::Update()
 {
     /// 当たり判定の更新
     pCollisionManager_->CheckAllCollision();
@@ -58,7 +58,7 @@ void Game::Update()
     NimaFramework::Update();
 }
 
-void Game::Draw()
+void ThirtySecBeforeDeadline::Draw()
 {
     /// 描画前処理
     NimaFramework::PreProcess();
@@ -72,7 +72,7 @@ void Game::Draw()
     NimaFramework::PostProcess();
 }
 
-void Game::InitializeInputMapper()
+void ThirtySecBeforeDeadline::InitializeInputMapper()
 {
     pInputMapperUI_ = std::make_unique<InputMapper<InputActionUI>>();
     pInputMapperUI_->MapAction(InputActionUI::Confirm, { InputMapper<InputActionUI>::KeyCode{ DIK_SPACE } });

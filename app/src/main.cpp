@@ -1,8 +1,8 @@
-#include "framework/Game.h"
+#include "framework/ThirtySecBeforeDeadline.h"
 
 int _stdcall WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 {
-    auto pCalms = std::make_unique<Game>();
+    auto pCalms = std::make_unique<ThirtySecBeforeDeadline>();
 
     pCalms->Run();
 

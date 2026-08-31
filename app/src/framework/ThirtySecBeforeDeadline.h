@@ -15,7 +15,7 @@
 /// ゲームのフレームワーククラス
 /// ゲーム固有の初期化、終了、更新、描画を行う
 /// </summary>
-class Game : public NimaFramework
+class ThirtySecBeforeDeadline : public NimaFramework
 {
 public:
     /// <summary>
