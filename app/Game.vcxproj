@@ -18,6 +18,23 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\module\NimaEngine\externals\DirectXTex\DirectXTex_Desktop_2022_Win10.vcxproj">
+      <Project>{371b9fa9-4c90-4ac6-a123-aced756d6c77}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\module\NimaEngine\externals\ImGui\ImGui.vcxproj">
+      <Project>{f83f6c46-aee0-480c-95fc-2319e6feb02b}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\module\NimaEngine\modules\nigui\NiGui.vcxproj">
+      <Project>{e3e0f431-57ab-47bd-9cad-db622644b99c}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\module\NimaEngine\modules\vectormatrix\Project\VecMat.vcxproj">
+      <Project>{a87ad77f-cc08-4788-8630-68470354fcd3}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\module\NimaEngine\src\Engine.vcxproj">
+      <Project>{9fd2d32d-dab0-40a1-b430-cbc12517b87c}</Project>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>18.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
@@ -146,23 +163,6 @@
       <EnableSegmentHeap>true</EnableSegmentHeap>
     </Manifest>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ProjectReference Include="module\NimaEngine\externals\DirectXTex\DirectXTex_Desktop_2022_Win10.vcxproj">
-      <Project>{371b9fa9-4c90-4ac6-a123-aced756d6c77}</Project>
-    </ProjectReference>
-    <ProjectReference Include="module\NimaEngine\externals\ImGui\ImGui.vcxproj">
-      <Project>{f83f6c46-aee0-480c-95fc-2319e6feb02b}</Project>
-    </ProjectReference>
-    <ProjectReference Include="module\NimaEngine\modules\nigui\NiGui.vcxproj">
-      <Project>{e3e0f431-57ab-47bd-9cad-db622644b99c}</Project>
-    </ProjectReference>
-    <ProjectReference Include="module\NimaEngine\modules\vectormatrix\Project\VecMat.vcxproj">
-      <Project>{a87ad77f-cc08-4788-8630-68470354fcd3}</Project>
-    </ProjectReference>
-    <ProjectReference Include="module\NimaEngine\src\Engine.vcxproj">
-      <Project>{9fd2d32d-dab0-40a1-b430-cbc12517b87c}</Project>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

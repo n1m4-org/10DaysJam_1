@@ -1,0 +1,22 @@
+<Solution>
+  <Configurations>
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Project Path="../module/NimaEngine/externals/DirectXTex/DirectXTex_Desktop_2022_Win10.vcxproj" Id="371b9fa9-4c90-4ac6-a123-aced756d6c77">
+    <Platform Project="x64" />
+  </Project>
+  <Project Path="../module/NimaEngine/externals/ImGui/ImGui.vcxproj" Id="f83f6c46-aee0-480c-95fc-2319e6feb02b">
+    <Platform Project="x64" />
+  </Project>
+  <Project Path="../module/NimaEngine/modules/nigui/NiGui.vcxproj" Id="e3e0f431-57ab-47bd-9cad-db622644b99c">
+    <Platform Project="x64" />
+  </Project>
+  <Project Path="../module/NimaEngine/modules/vectormatrix/Project/VecMat.vcxproj" Id="a87ad77f-cc08-4788-8630-68470354fcd3">
+    <Platform Project="x64" />
+  </Project>
+  <Project Path="../module/NimaEngine/src/Engine.vcxproj" Id="9fd2d32d-dab0-40a1-b430-cbc12517b87c">
+    <Platform Project="x64" />
+  </Project>
+  <Project Path="Game.vcxproj" Id="d4b8880d-7dfd-4e14-8601-b0e6facd1d6d" />
+</Solution>
