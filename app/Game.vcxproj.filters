@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="src\framework\Game.cpp">
+      <Filter>src\framework</Filter>
+    </ClCompile>
+    <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\presentation\animation\RadialBeat.cpp">
+      <Filter>src\presentation\animation</Filter>
+    </ClCompile>
+    <ClCompile Include="src\scene\factory\SceneFactory.cpp">
+      <Filter>src\scene\factory</Filter>
+    </ClCompile>
+    <ClCompile Include="src\scene\title\animation\OpeningAnimation.cpp">
+      <Filter>src\scene\title\animation</Filter>
+    </ClCompile>
+    <ClCompile Include="src\scene\title\TitleScene.cpp">
+      <Filter>src\scene\title</Filter>
+    </ClCompile>
+    <ClCompile Include="src\screen\factory\IntermediateScreenFactory.cpp">
+      <Filter>src\screen\factory</Filter>
+    </ClCompile>
+    <ClCompile Include="src\screen\loading\LoadingScreen.cpp">
+      <Filter>src\screen\loading</Filter>
+    </ClCompile>
+    <ClCompile Include="src\wrapper\InputAwareSprite.cpp">
+      <Filter>src\wrapper</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="src">
+      <UniqueIdentifier>{397ad4b1-54de-48ff-8c64-1ab29040a613}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\config">
+      <UniqueIdentifier>{29ab8672-767e-4756-b93d-2c5a05095d25}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\framework">
+      <UniqueIdentifier>{6c8e0241-57b0-4368-9898-8e1d96cf8d5d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\logic">
+      <UniqueIdentifier>{0d8d52d1-8eea-49e9-b7fa-bc132432d1dd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\presentation">
+      <UniqueIdentifier>{1cad9e48-0e3c-4051-90d1-0cc73d42a5af}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\scene">
+      <UniqueIdentifier>{97236c83-21d3-47b9-be08-8d2191766d43}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\screen">
+      <UniqueIdentifier>{8876c19e-fd40-4c31-b9a3-6830767f4196}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\wrapper">
+      <UniqueIdentifier>{e31bceb2-91a4-422e-b4f8-49874f399883}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\logic\input">
+      <UniqueIdentifier>{70818c74-cc1f-44b3-ad8d-8ccffdd24319}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\presentation\animation">
+      <UniqueIdentifier>{dd53084d-6473-42c0-9593-a6c70340de08}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\scene\factory">
+      <UniqueIdentifier>{a8a82c41-fac2-41df-89e9-27e327588d94}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\scene\title">
+      <UniqueIdentifier>{b05ac6a7-91b6-4b92-9a9c-668b21ab971f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\screen\factory">
+      <UniqueIdentifier>{89001a05-b79f-49ba-ac96-e1722a92e92f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\screen\loading">
+      <UniqueIdentifier>{a0dd9f28-c555-46c9-a68c-190907ebec5c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\scene\title\animation">
+      <UniqueIdentifier>{b1c9f920-5fd7-496c-bc52-9e5beddfd29e}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\config\ResourcePath.h">
+      <Filter>src\config</Filter>
+    </ClInclude>
+    <ClInclude Include="src\framework\Game.h">
+      <Filter>src\framework</Filter>
+    </ClInclude>
+    <ClInclude Include="src\logic\input\InputAction.h">
+      <Filter>src\logic\input</Filter>
+    </ClInclude>
+    <ClInclude Include="src\presentation\animation\RadialBeat.h">
+      <Filter>src\presentation\animation</Filter>
+    </ClInclude>
+    <ClInclude Include="src\scene\factory\SceneFactory.h">
+      <Filter>src\scene\factory</Filter>
+    </ClInclude>
+    <ClInclude Include="src\scene\title\animation\OpeningAnimation.h">
+      <Filter>src\scene\title\animation</Filter>
+    </ClInclude>
+    <ClInclude Include="src\scene\title\TitleScene.h">
+      <Filter>src\scene\title</Filter>
+    </ClInclude>
+    <ClInclude Include="src\screen\factory\IntermediateScreenFactory.h">
+      <Filter>src\screen\factory</Filter>
+    </ClInclude>
+    <ClInclude Include="src\screen\loading\LoadingScreen.h">
+      <Filter>src\screen\loading</Filter>
+    </ClInclude>
+    <ClInclude Include="src\wrapper\InputAwareSprite.h">
+      <Filter>src\wrapper</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
