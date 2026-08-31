@@ -2,14 +2,14 @@
   "DefaultProfile": "App",
   "Profiles": {
     "App": {
-      "VcxprojPath": "..\\app\\app.vcxproj",
+      "VcxprojPath": "..\\app\\Game.vcxproj",
       "StripPrefixes": [],
       "RootFileNames": [
         "main.cpp"
       ]
     },
-    "Hagine": {
-      "VcxprojPath": "..\\module\\Hagine\\Hagine.vcxproj",
+    "NimaEngine": {
+      "VcxprojPath": "..\\module\\NimaEngine\\src\\Engine.vcxproj",
       "StripPrefixes": [],
       "RootFileNames": [
         "main.cpp"

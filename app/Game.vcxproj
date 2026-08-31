@@ -29,25 +29,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\framework\Game.cpp" />
-    <ClCompile Include="src\logic\score\ScoreCalculator.cpp" />
-    <ClCompile Include="src\logic\score\ScoreReviewer.cpp" />
-    <ClCompile Include="src\logic\slomo\SlomoLogic.cpp" />
-    <ClCompile Include="src\logic\spawner\EnemySpawner.cpp" />
-    <ClCompile Include="src\logic\spawner\ResourceBasedEnemySpawner.cpp" />
-    <ClCompile Include="src\logic\timer\InGameCountDown.cpp" />
-    <ClCompile Include="src\logic\wave\WaveBadgetCalculator.cpp" />
-    <ClCompile Include="src\logic\wave\WaveInfoBuilder.cpp" />
     <ClCompile Include="src\main.cpp" />
-    <ClCompile Include="src\scene\clear\ClearScene.cpp" />
-    <ClCompile Include="src\scene\edit\EditScene.cpp" />
+    <ClCompile Include="src\presentation\animation\RadialBeat.cpp" />
     <ClCompile Include="src\scene\factory\SceneFactory.cpp" />
-    <ClCompile Include="src\scene\game\animation\GameClearAnimation.cpp" />
-    <ClCompile Include="src\scene\game\GameScene.cpp" />
-    <ClCompile Include="src\scene\game\layer\GameLayer.cpp" />
-    <ClCompile Include="src\scene\game\layer\IncrementalGameLayer.cpp" />
-    <ClCompile Include="src\scene\game\layer\PauseLayer.cpp" />
-    <ClCompile Include="src\scene\game\layer\ResultLayer.cpp" />
-    <ClCompile Include="src\scene\game\layer\TitleLayer.cpp" />
     <ClCompile Include="src\scene\title\animation\OpeningAnimation.cpp" />
     <ClCompile Include="src\scene\title\TitleScene.cpp" />
     <ClCompile Include="src\screen\factory\IntermediateScreenFactory.cpp" />
@@ -57,32 +41,9 @@
   <ItemGroup>
     <ClInclude Include="src\config\ResourcePath.h" />
     <ClInclude Include="src\framework\Game.h" />
-    <ClInclude Include="src\logic\event\KillEnemyEvent.h" />
-    <ClInclude Include="src\logic\event\ParticleEmitEvent.h" />
-    <ClInclude Include="src\logic\event\PauseMenuToggleEvent.h" />
-    <ClInclude Include="src\logic\event\PlayerExplosionEvent.h" />
     <ClInclude Include="src\logic\input\InputAction.h" />
-    <ClInclude Include="src\logic\score\ScoreCalculator.h" />
-    <ClInclude Include="src\logic\score\ScoreReviewer.h" />
-    <ClInclude Include="src\logic\slomo\SlomoLogic.h" />
-    <ClInclude Include="src\logic\spawner\EnemySpawner.h" />
-    <ClInclude Include="src\logic\spawner\ResourceBasedEnemySpawner.h" />
-    <ClInclude Include="src\logic\timer\InGameCountDown.h" />
-    <ClInclude Include="src\logic\wave\WaveBadgetCalculator.h" />
-    <ClInclude Include="src\logic\wave\WaveInfo.h" />
-    <ClInclude Include="src\logic\wave\WaveInfoBuilder.h" />
-    <ClInclude Include="src\logic\wave\WaveSequencer.h" />
-    <ClInclude Include="src\logic\wave\WaveState.h" />
-    <ClInclude Include="src\scene\clear\ClearScene.h" />
-    <ClInclude Include="src\scene\edit\EditScene.h" />
+    <ClInclude Include="src\presentation\animation\RadialBeat.h" />
     <ClInclude Include="src\scene\factory\SceneFactory.h" />
-    <ClInclude Include="src\scene\game\animation\GameClearAnimation.h" />
-    <ClInclude Include="src\scene\game\GameScene.h" />
-    <ClInclude Include="src\scene\game\layer\GameLayer.h" />
-    <ClInclude Include="src\scene\game\layer\IncrementalGameLayer.h" />
-    <ClInclude Include="src\scene\game\layer\PauseLayer.h" />
-    <ClInclude Include="src\scene\game\layer\ResultLayer.h" />
-    <ClInclude Include="src\scene\game\layer\TitleLayer.h" />
     <ClInclude Include="src\scene\title\animation\OpeningAnimation.h" />
     <ClInclude Include="src\scene\title\TitleScene.h" />
     <ClInclude Include="src\screen\factory\IntermediateScreenFactory.h" />
@@ -134,10 +95,12 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions);_AMD64_</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <AdditionalIncludeDirectories>$(ProjectDir)src\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>/utf-8 %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -146,6 +109,11 @@
     <Manifest>
       <EnableSegmentHeap>true</EnableSegmentHeap>
     </Manifest>
+    <PostBuildEvent>
+      <Command>copy /Y "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxcompiler.dll" "$(TargetDir)dxcompiler.dll"
+copy /Y "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dxil.dll"
+xcopy /E /I /Y "$(ProjectDir)..\module\NimaEngine\src\EngineResources" "$(ProjectDir)EngineResources\"</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -153,9 +121,10 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions);_AMD64_</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <AdditionalIncludeDirectories>$(ProjectDir)src\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
@@ -165,6 +134,11 @@
     <Manifest>
       <EnableSegmentHeap>true</EnableSegmentHeap>
     </Manifest>
+    <PostBuildEvent>
+      <Command>copy /Y "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxcompiler.dll" "$(TargetDir)dxcompiler.dll"
+copy /Y "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dxil.dll"
+xcopy /E /I /Y "$(ProjectDir)..\module\NimaEngine\src\EngineResources" "$(ProjectDir)EngineResources\"</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

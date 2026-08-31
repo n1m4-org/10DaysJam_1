@@ -15,7 +15,7 @@
 /// ゲームのフレームワーククラス
 /// ゲーム固有の初期化、終了、更新、描画を行う
 /// </summary>
-class Calms : public NimaFramework
+class Game : public NimaFramework
 {
 public:
     /// <summary>

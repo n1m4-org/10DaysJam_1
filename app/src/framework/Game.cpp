@@ -9,7 +9,7 @@
 
 #pragma comment(lib, "Ws2_32.lib")
 
-void Calms::Initialize()
+void Game::Initialize()
 {
     /// 基底クラスの初期化処理
     NimaFramework::Initialize();
@@ -43,13 +43,13 @@ void Calms::Initialize()
     pTextureManager_->LoadTexture("noise0.png");
 }
 
-void Calms::Finalize()
+void Game::Finalize()
 {
     /// 基底クラスの終了処理
     NimaFramework::Finalize();
 }
 
-void Calms::Update()
+void Game::Update()
 {
     /// 当たり判定の更新
     pCollisionManager_->CheckAllCollision();
@@ -58,7 +58,7 @@ void Calms::Update()
     NimaFramework::Update();
 }
 
-void Calms::Draw()
+void Game::Draw()
 {
     /// 描画前処理
     NimaFramework::PreProcess();
@@ -72,7 +72,7 @@ void Calms::Draw()
     NimaFramework::PostProcess();
 }
 
-void Calms::InitializeInputMapper()
+void Game::InitializeInputMapper()
 {
     pInputMapperUI_ = std::make_unique<InputMapper<InputActionUI>>();
     pInputMapperUI_->MapAction(InputActionUI::Confirm, { InputMapper<InputActionUI>::KeyCode{ DIK_SPACE } });
