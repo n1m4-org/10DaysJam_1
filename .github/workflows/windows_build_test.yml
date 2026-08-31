@@ -1,7 +1,7 @@
 name: windows_build_test
 on: [pull_request]
 env:
-  SOLUTION_FILE_PATH: app/app.slnx
+  SOLUTION_FILE_PATH: app/Game.slnx
 
 jobs:
   build:
