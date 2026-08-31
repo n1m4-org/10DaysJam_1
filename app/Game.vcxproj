@@ -1,14 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
-    <ProjectConfiguration Include="Debug|Win32">
-      <Configuration>Debug</Configuration>
-      <Platform>Win32</Platform>
-    </ProjectConfiguration>
-    <ProjectConfiguration Include="Release|Win32">
-      <Configuration>Release</Configuration>
-      <Platform>Win32</Platform>
-    </ProjectConfiguration>
     <ProjectConfiguration Include="Debug|x64">
       <Configuration>Debug</Configuration>
       <Platform>x64</Platform>
@@ -35,6 +27,68 @@
       <Project>{9fd2d32d-dab0-40a1-b430-cbc12517b87c}</Project>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\framework\Game.cpp" />
+    <ClCompile Include="src\logic\score\ScoreCalculator.cpp" />
+    <ClCompile Include="src\logic\score\ScoreReviewer.cpp" />
+    <ClCompile Include="src\logic\slomo\SlomoLogic.cpp" />
+    <ClCompile Include="src\logic\spawner\EnemySpawner.cpp" />
+    <ClCompile Include="src\logic\spawner\ResourceBasedEnemySpawner.cpp" />
+    <ClCompile Include="src\logic\timer\InGameCountDown.cpp" />
+    <ClCompile Include="src\logic\wave\WaveBadgetCalculator.cpp" />
+    <ClCompile Include="src\logic\wave\WaveInfoBuilder.cpp" />
+    <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\scene\clear\ClearScene.cpp" />
+    <ClCompile Include="src\scene\edit\EditScene.cpp" />
+    <ClCompile Include="src\scene\factory\SceneFactory.cpp" />
+    <ClCompile Include="src\scene\game\animation\GameClearAnimation.cpp" />
+    <ClCompile Include="src\scene\game\GameScene.cpp" />
+    <ClCompile Include="src\scene\game\layer\GameLayer.cpp" />
+    <ClCompile Include="src\scene\game\layer\IncrementalGameLayer.cpp" />
+    <ClCompile Include="src\scene\game\layer\PauseLayer.cpp" />
+    <ClCompile Include="src\scene\game\layer\ResultLayer.cpp" />
+    <ClCompile Include="src\scene\game\layer\TitleLayer.cpp" />
+    <ClCompile Include="src\scene\title\animation\OpeningAnimation.cpp" />
+    <ClCompile Include="src\scene\title\TitleScene.cpp" />
+    <ClCompile Include="src\screen\factory\IntermediateScreenFactory.cpp" />
+    <ClCompile Include="src\screen\loading\LoadingScreen.cpp" />
+    <ClCompile Include="src\wrapper\InputAwareSprite.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\config\ResourcePath.h" />
+    <ClInclude Include="src\framework\Game.h" />
+    <ClInclude Include="src\logic\event\KillEnemyEvent.h" />
+    <ClInclude Include="src\logic\event\ParticleEmitEvent.h" />
+    <ClInclude Include="src\logic\event\PauseMenuToggleEvent.h" />
+    <ClInclude Include="src\logic\event\PlayerExplosionEvent.h" />
+    <ClInclude Include="src\logic\input\InputAction.h" />
+    <ClInclude Include="src\logic\score\ScoreCalculator.h" />
+    <ClInclude Include="src\logic\score\ScoreReviewer.h" />
+    <ClInclude Include="src\logic\slomo\SlomoLogic.h" />
+    <ClInclude Include="src\logic\spawner\EnemySpawner.h" />
+    <ClInclude Include="src\logic\spawner\ResourceBasedEnemySpawner.h" />
+    <ClInclude Include="src\logic\timer\InGameCountDown.h" />
+    <ClInclude Include="src\logic\wave\WaveBadgetCalculator.h" />
+    <ClInclude Include="src\logic\wave\WaveInfo.h" />
+    <ClInclude Include="src\logic\wave\WaveInfoBuilder.h" />
+    <ClInclude Include="src\logic\wave\WaveSequencer.h" />
+    <ClInclude Include="src\logic\wave\WaveState.h" />
+    <ClInclude Include="src\scene\clear\ClearScene.h" />
+    <ClInclude Include="src\scene\edit\EditScene.h" />
+    <ClInclude Include="src\scene\factory\SceneFactory.h" />
+    <ClInclude Include="src\scene\game\animation\GameClearAnimation.h" />
+    <ClInclude Include="src\scene\game\GameScene.h" />
+    <ClInclude Include="src\scene\game\layer\GameLayer.h" />
+    <ClInclude Include="src\scene\game\layer\IncrementalGameLayer.h" />
+    <ClInclude Include="src\scene\game\layer\PauseLayer.h" />
+    <ClInclude Include="src\scene\game\layer\ResultLayer.h" />
+    <ClInclude Include="src\scene\game\layer\TitleLayer.h" />
+    <ClInclude Include="src\scene\title\animation\OpeningAnimation.h" />
+    <ClInclude Include="src\scene\title\TitleScene.h" />
+    <ClInclude Include="src\screen\factory\IntermediateScreenFactory.h" />
+    <ClInclude Include="src\screen\loading\LoadingScreen.h" />
+    <ClInclude Include="src\wrapper\InputAwareSprite.h" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>18.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
@@ -43,19 +97,6 @@
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
-    <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v145</PlatformToolset>
-    <CharacterSet>Unicode</CharacterSet>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
-    <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v145</PlatformToolset>
-    <WholeProgramOptimization>true</WholeProgramOptimization>
-    <CharacterSet>Unicode</CharacterSet>
-  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
@@ -74,12 +115,6 @@
   </ImportGroup>
   <ImportGroup Label="Shared">
   </ImportGroup>
-  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-  </ImportGroup>
-  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-  </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
@@ -95,40 +130,6 @@
     <OutDir>$(ProjectDir)Bin\$(Configuration)\</OutDir>
     <IntDir>$(ProjectDir)Bin\$(Configuration)\artifact\</IntDir>
   </PropertyGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <ClCompile>
-      <WarningLevel>Level3</WarningLevel>
-      <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <ConformanceMode>true</ConformanceMode>
-      <LanguageStandard>stdcpp20</LanguageStandard>
-    </ClCompile>
-    <Link>
-      <SubSystem>Console</SubSystem>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
-    </Link>
-    <Manifest>
-      <EnableSegmentHeap>true</EnableSegmentHeap>
-    </Manifest>
-  </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <ClCompile>
-      <WarningLevel>Level3</WarningLevel>
-      <FunctionLevelLinking>true</FunctionLevelLinking>
-      <IntrinsicFunctions>true</IntrinsicFunctions>
-      <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <ConformanceMode>true</ConformanceMode>
-      <LanguageStandard>stdcpp20</LanguageStandard>
-    </ClCompile>
-    <Link>
-      <SubSystem>Console</SubSystem>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
-    </Link>
-    <Manifest>
-      <EnableSegmentHeap>true</EnableSegmentHeap>
-    </Manifest>
-  </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
@@ -136,6 +137,7 @@
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
+      <AdditionalIncludeDirectories>$(ProjectDir)src\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -154,6 +156,7 @@
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
+      <AdditionalIncludeDirectories>$(ProjectDir)src\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>

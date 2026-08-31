@@ -1,2 +1,65 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" />
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\framework\Game.cpp" />
+    <ClCompile Include="src\scene\clear\ClearScene.cpp" />
+    <ClCompile Include="src\scene\edit\EditScene.cpp" />
+    <ClCompile Include="src\scene\factory\SceneFactory.cpp" />
+    <ClCompile Include="src\scene\game\animation\GameClearAnimation.cpp" />
+    <ClCompile Include="src\scene\game\GameScene.cpp" />
+    <ClCompile Include="src\scene\game\layer\GameLayer.cpp" />
+    <ClCompile Include="src\scene\game\layer\IncrementalGameLayer.cpp" />
+    <ClCompile Include="src\scene\game\layer\PauseLayer.cpp" />
+    <ClCompile Include="src\scene\game\layer\ResultLayer.cpp" />
+    <ClCompile Include="src\scene\game\layer\TitleLayer.cpp" />
+    <ClCompile Include="src\scene\title\animation\OpeningAnimation.cpp" />
+    <ClCompile Include="src\scene\title\TitleScene.cpp" />
+    <ClCompile Include="src\screen\factory\IntermediateScreenFactory.cpp" />
+    <ClCompile Include="src\screen\loading\LoadingScreen.cpp" />
+    <ClCompile Include="src\wrapper\InputAwareSprite.cpp" />
+    <ClCompile Include="src\logic\score\ScoreCalculator.cpp" />
+    <ClCompile Include="src\logic\score\ScoreReviewer.cpp" />
+    <ClCompile Include="src\logic\slomo\SlomoLogic.cpp" />
+    <ClCompile Include="src\logic\spawner\EnemySpawner.cpp" />
+    <ClCompile Include="src\logic\spawner\ResourceBasedEnemySpawner.cpp" />
+    <ClCompile Include="src\logic\timer\InGameCountDown.cpp" />
+    <ClCompile Include="src\logic\wave\WaveBadgetCalculator.cpp" />
+    <ClCompile Include="src\logic\wave\WaveInfoBuilder.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\framework\Game.h" />
+    <ClInclude Include="src\scene\clear\ClearScene.h" />
+    <ClInclude Include="src\scene\edit\EditScene.h" />
+    <ClInclude Include="src\scene\factory\SceneFactory.h" />
+    <ClInclude Include="src\scene\game\animation\GameClearAnimation.h" />
+    <ClInclude Include="src\scene\game\GameScene.h" />
+    <ClInclude Include="src\scene\game\layer\GameLayer.h" />
+    <ClInclude Include="src\scene\game\layer\IncrementalGameLayer.h" />
+    <ClInclude Include="src\scene\game\layer\PauseLayer.h" />
+    <ClInclude Include="src\scene\game\layer\ResultLayer.h" />
+    <ClInclude Include="src\scene\game\layer\TitleLayer.h" />
+    <ClInclude Include="src\scene\title\animation\OpeningAnimation.h" />
+    <ClInclude Include="src\scene\title\TitleScene.h" />
+    <ClInclude Include="src\config\ResourcePath.h" />
+    <ClInclude Include="src\screen\factory\IntermediateScreenFactory.h" />
+    <ClInclude Include="src\screen\loading\LoadingScreen.h" />
+    <ClInclude Include="src\wrapper\InputAwareSprite.h" />
+    <ClInclude Include="src\logic\event\KillEnemyEvent.h" />
+    <ClInclude Include="src\logic\event\ParticleEmitEvent.h" />
+    <ClInclude Include="src\logic\event\PauseMenuToggleEvent.h" />
+    <ClInclude Include="src\logic\event\PlayerExplosionEvent.h" />
+    <ClInclude Include="src\logic\input\InputAction.h" />
+    <ClInclude Include="src\logic\score\ScoreCalculator.h" />
+    <ClInclude Include="src\logic\score\ScoreReviewer.h" />
+    <ClInclude Include="src\logic\slomo\SlomoLogic.h" />
+    <ClInclude Include="src\logic\spawner\EnemySpawner.h" />
+    <ClInclude Include="src\logic\spawner\ResourceBasedEnemySpawner.h" />
+    <ClInclude Include="src\logic\timer\InGameCountDown.h" />
+    <ClInclude Include="src\logic\wave\WaveBadgetCalculator.h" />
+    <ClInclude Include="src\logic\wave\WaveInfo.h" />
+    <ClInclude Include="src\logic\wave\WaveInfoBuilder.h" />
+    <ClInclude Include="src\logic\wave\WaveSequencer.h" />
+    <ClInclude Include="src\logic\wave\WaveState.h" />
+  </ItemGroup>
+</Project>
