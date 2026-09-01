@@ -1,4 +1,5 @@
 #pragma once
+#include <string_view>
 
 namespace Path::Resource
 {
@@ -87,18 +88,45 @@ namespace Path::Image
         // マップタイル
         inline constexpr const char* kTestTile = "game/tile/Simple.png";
 
+
+		enum class WallType
+		{
+			kAll,
+			kLB,
+			kLBT,
+			kLRB,
+			kLRT,
+			kLT,
+			kRB,
+			kRBT,
+			kRL,
+			kRT,
+			kTB,
+            kB,
+            kL,
+            kR,
+            kT,
+			WallTypeCount
+		};
+
         // 壁
-		inline constexpr const char* kWallAll = "game/walls/wall_all.png";
-        inline constexpr const char* kWallLB = "game/walls/wall_LB.png";
-        inline constexpr const char* kWallLBT = "game/walls/wall_LBT.png";
-        inline constexpr const char* kWallLRB = "game/walls/wall_LRB.png";
-        inline constexpr const char* kWallLRT = "game/walls/wall_LRT.png";
-        inline constexpr const char* kWallLT = "game/walls/wall_LT.png";
-        inline constexpr const char* kWallRB = "game/walls/wall_RB.png";
-        inline constexpr const char* kWallRBT = "game/walls/wall_RBT.png";
-        inline constexpr const char* kWallRL = "game/walls/wall_RL.png";
-        inline constexpr const char* kWallRT = "game/walls/wall_RT.png";
-        inline constexpr const char* kWallTB = "game/walls/wall_TB.png";
+        inline constexpr const char* kWalls[static_cast<std::size_t>(WallType::WallTypeCount)] = {
+            "game/walls/wall_all.png", // kAll
+            "game/walls/wall_LB.png",  // kLB
+            "game/walls/wall_LBT.png", // kLBT
+            "game/walls/wall_LRB.png", // kLRB
+            "game/walls/wall_LRT.png", // kLRT
+            "game/walls/wall_LT.png",  // kLT
+            "game/walls/wall_RB.png",  // kRB
+            "game/walls/wall_RBT.png", // kRBT
+            "game/walls/wall_RL.png",  // kRL
+            "game/walls/wall_RT.png",  // kRT
+            "game/walls/wall_TB.png",  // kTB
+            "game/walls/wall_end_B.png",  // kB
+            "game/walls/wall_end_L.png",  // kL
+            "game/walls/wall_end_R.png",  // kR
+            "game/walls/wall_end_T.png",  // kT
+        };      
     }
 
 
@@ -160,3 +188,13 @@ namespace Path::Json
     inline constexpr const char* kPopTimeTable = "PopTimeTable.json";
     inline constexpr const char* kScoreReviewerThresholds = "ScoreReviewerThresholds.json";
 }
+
+namespace Path {
+namespace Image {
+namespace InGame {
+
+inline constexpr std::string_view kWall = "images/in_game/wall.png";
+
+} // namespace InGame
+} // namespace Image
+} // namespace Path
