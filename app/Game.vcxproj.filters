@@ -26,6 +26,7 @@
     <ClCompile Include="src\wrapper\InputAwareSprite.cpp">
       <Filter>src\wrapper</Filter>
     </ClCompile>
+    <ClCompile Include="src\scene\game\GameScene.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -105,5 +106,6 @@
     <ClInclude Include="src\wrapper\InputAwareSprite.h">
       <Filter>src\wrapper</Filter>
     </ClInclude>
+    <ClInclude Include="src\scene\game\GameScene.h" />
   </ItemGroup>
 </Project>

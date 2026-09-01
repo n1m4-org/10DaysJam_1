@@ -28,6 +28,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\scene\game\GameScene.cpp" />
     <ClCompile Include="src\framework\ThirtySecBeforeDeadline.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\presentation\animation\RadialBeat.cpp" />
@@ -39,6 +40,7 @@
     <ClCompile Include="src\wrapper\InputAwareSprite.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\scene\game\GameScene.h" />
     <ClInclude Include="src\config\ResourcePath.h" />
     <ClInclude Include="src\framework\ThirtySecBeforeDeadline.h" />
     <ClInclude Include="src\logic\input\InputAction.h" />

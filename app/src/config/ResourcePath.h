@@ -83,6 +83,22 @@ namespace Path::Image
 
         inline constexpr const char* kScoreUpRate2 = "game/x2.png";
         inline constexpr const char* kScoreUpRate3 = "game/x3.png";
+
+        // マップタイル
+        inline constexpr const char* kTestTile = "game/tile/Simple.png";
+
+        // 壁
+		inline constexpr const char* kWallAll = "game/walls/wall_all.png";
+        inline constexpr const char* kWallLB = "game/walls/wall_LB.png";
+        inline constexpr const char* kWallLBT = "game/walls/wall_LBT.png";
+        inline constexpr const char* kWallLRB = "game/walls/wall_LRB.png";
+        inline constexpr const char* kWallLRT = "game/walls/wall_LRT.png";
+        inline constexpr const char* kWallLT = "game/walls/wall_LT.png";
+        inline constexpr const char* kWallRB = "game/walls/wall_RB.png";
+        inline constexpr const char* kWallRBT = "game/walls/wall_RBT.png";
+        inline constexpr const char* kWallRL = "game/walls/wall_RL.png";
+        inline constexpr const char* kWallRT = "game/walls/wall_RT.png";
+        inline constexpr const char* kWallTB = "game/walls/wall_TB.png";
     }
 
 
