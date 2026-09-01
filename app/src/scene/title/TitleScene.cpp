@@ -24,12 +24,16 @@ void TitleScene::Initialize()
     pDx12_ = std::any_cast<DirectX12*>(pArgs_->Get("DirectX12"));
     pInputMapperUI_ = std::any_cast<InputMapper<InputActionUI>*>(pArgs_->Get("InputMapperUI"));
 
+    // ゲームアイの初期化
+    this->InitializeGameEye();
+
     /// Canvasの初期化
     {
         Canvas::Params params = {};
         params.name = "TitleCanvas";
         params.pDx12 = pDx12_;
         params.pCubemapSystem = pCubemapSystem_;
+        params.pGameEye = gameEye_.get();
         #ifdef _DEBUG
         params.pImGuiManager = std::any_cast<ImGuiManager*>(pArgs_->Get("ImGuiManager"));
         #endif // _DEBUG
@@ -44,9 +48,6 @@ void TitleScene::Initialize()
         pLayer_->AddCanvas(pCanvasBack_.get());
         pLayer_->AddCanvas(pCanvasSprite_.get());
     }
-
-    // ゲームアイの初期化
-    this->InitializeGameEye();
 
     // スカイボックスの初期化
     this->InitializeSkybox();
@@ -100,14 +101,13 @@ void TitleScene::Finalize()
 
 void TitleScene::Update()
 {
-    Vector3 eyeRotate = gameEye_->GetTransform().rotate;
+    Vector3 eyeRotate = gameEye_->GetRotation();
     eyeRotate.y += 0.001f;
 
     float t = (std::sinf(eyeRotate.y * 10.0f) + 1.0f) / 2.0f; // 0から1の範囲で変化する値
-    Vector3 eyePos = gameEye_->GetTransform().translate;
+    Vector3 eyePos = gameEye_->GetPosition();
     eyePos.z = std::lerp(kEyePosZMin_, kEyePosZMax_, Math::Easing::EaseInOutSine(t));
-    gameEye_->SetRotate(eyeRotate);
-    gameEye_->SetTranslate(eyePos);
+
     gameEye_->Update();
 
     float threshold = std::lerp(kBloomThresholdMin_, 0.5f, Math::Easing::EaseInOutSine(t));
@@ -152,11 +152,10 @@ void TitleScene::Draw()
 void TitleScene::InitializeGameEye()
 {
     /// ゲームアイの初期化
-    gameEye_ = std::make_unique<GameEye>();
+    gameEye_ = std::make_unique<GameEye2d>();
     gameEye_->SetName("main");
-    gameEye_->SetTranslate(Vector3(0, 15.0f, -30.0f));
-    gameEye_->SetRotate(Vector3(-1.2f, 0, 0));
-    gameEye_->SetFov(1.2f);
+    gameEye_->SetPosition({ 0.0f, 15.0f });
+    gameEye_->SetRotation(-1.2f);
 
     /// ゲームアイをセット
     Object3dSystem::GetInstance()->SetGlobalEye(gameEye_.get());
