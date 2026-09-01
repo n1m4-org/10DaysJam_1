@@ -107,5 +107,6 @@
       <Filter>src\wrapper</Filter>
     </ClInclude>
     <ClInclude Include="src\scene\game\GameScene.h" />
+    <ClInclude Include="src\logic\ConvertNumTex\ConvertNumTex.h" />
   </ItemGroup>
 </Project>

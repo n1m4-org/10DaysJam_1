@@ -40,6 +40,7 @@
     <ClCompile Include="src\wrapper\InputAwareSprite.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\logic\ConvertNumTex\ConvertNumTex.h" />
     <ClInclude Include="src\scene\game\GameScene.h" />
     <ClInclude Include="src\config\ResourcePath.h" />
     <ClInclude Include="src\framework\ThirtySecBeforeDeadline.h" />

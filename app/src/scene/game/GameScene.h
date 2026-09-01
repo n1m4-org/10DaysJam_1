@@ -50,12 +50,24 @@ private:
     void InitializeSprites();
     void InitializeSkybox();
 
+    void MapEdit();
+    void UpdateTileSprite(int x, int y);
+
 
     std::unique_ptr<Canvas>             pCanvasBack_ = nullptr;      // !< タイトルキャンバス
     std::unique_ptr<Canvas>             pCanvasSprite_ = nullptr;      // !< タイトルキャンバス
     std::unique_ptr<GameEye>            gameEye_ = {};           // !< ゲームアイ
     std::unique_ptr<Skybox>             pSkybox_ = nullptr;      // !< スカイボックス
-    std::array<std::unique_ptr<Sprite>, 9> pSpriteTile_;         // !< タイル
+    std::vector<std::vector<std::unique_ptr<Sprite>>> pSpriteTile_;         // !< タイル
+
+    std::vector<std::vector<int>> mapData_;  // !< マップデータ
+
+	Vector2 mapOffset_ = { 0.0f, 0.0f };   // !< マップのオフセット
+
+	float tileSize_ = 64.0f;   // !< タイルのサイズ
+	int mapWidth_ = 9;      // !< マップの幅
+	int mapHeight_ = 9;      // !< マップの高さ
+
 
     /// 他クラスのインスタンス
     PostEffectExecutor* pPostEffectExecutor_ = nullptr;      // !< ポストエフェクト実行クラス
