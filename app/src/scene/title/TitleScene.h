@@ -25,6 +25,8 @@
 #include <memory>
 #include <wrapper/InputAwareSprite.h>
 #include <Features/GameEye2d/GameEye2d.h>
+#include <drawable/particle/Emitter/ParticleEmitter.h>
+#include <drawable/particle/Particle.h>
 
 /// <summary>
 /// タイトルシーン
@@ -60,6 +62,8 @@ private:
     void InitializeSprites();
     void InitializeSkybox();
     void InitializePostEffects();
+    void InitializeParticleEmitter();
+    void InitializeCanvas();
 
     /// <summary>
     /// タイトルロゴのアニメーション更新を行います。
@@ -85,6 +89,7 @@ private:
     std::unique_ptr<TransShutter>       pTransShutter_              = nullptr;      // !< シャッター遷移エフェクト
     std::unique_ptr<Canvas>             pCanvasBack_                = nullptr;      // !< タイトルキャンバス
     std::unique_ptr<Canvas>             pCanvasSprite_              = nullptr;      // !< タイトルキャンバス
+    std::unique_ptr<Canvas>             pCanvasWorld_               = nullptr;      // !< タイトルキャンバス
     std::unique_ptr<GameEye2d>          gameEye_                    = {};           // !< ゲームアイ
     std::unique_ptr<Sprite>             pSpriteTitle_               = nullptr;      // !< タイトル
     std::unique_ptr<Sprite>             pSpriteFrameScreen_         = nullptr;      // !< タイトル
@@ -99,6 +104,8 @@ private:
     Audio*                              pSoundBGM_                  = nullptr;      // !< BGM音声
     std::unique_ptr<RadialBeat>         pRadialBeat_                = nullptr;      // !< 放射状ブラービート
     std::unique_ptr<InputAwareSprite>   pInputAwareSprite_          = nullptr;      // !< 入力デバイスによって自動切り替え可能なスプライト
+    std::unique_ptr<ParticleEmitter>    pParticleEmitter_           = nullptr;      // !< パーティクルエミッター
+    Particle*                           pParticle_                  = nullptr;      // !< パーティクル
 
     /// 他クラスのインスタンス
     PostEffectExecutor*         pPostEffectExecutor_    = nullptr;      // !< ポストエフェクト実行クラス
@@ -107,4 +114,5 @@ private:
     SceneManager*               pSceneManager_          = nullptr;      // !< シーン遷移
     CubemapSystem*              pCubemapSystem_         = nullptr;      // !< キューブマップシステム
     InputMapper<InputActionUI>* pInputMapperUI_         = nullptr;      // !< 入力マッパー
+    ModelManager*               pModelManager_          = nullptr;      // !< モデルマネージャー
 };

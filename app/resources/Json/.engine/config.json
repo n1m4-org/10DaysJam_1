@@ -1,16 +1,27 @@
 {
-  "settings": {
-    "common": {
-      "window_title": "Calms",
-      "start_scene": "TitleScene",
-      "screen_width": 1600,
-      "screen_height": 900
-    },
-    "path": {
-      "model": [ "Resources/Models" ],
-      "texture": [ "Resources/Textures" ],
-      "audio": [ "Resources/Sounds" ],
-      "particle_emitter": [ "Resources/Json/ParticleEmitter" ]
+    "settings": {
+        "common": {
+            "screen_height": 900,
+            "screen_width": 1600,
+            "start_scene": "TitleScene",
+            "window_title": "Calms"
+        },
+        "particle_emitter": {
+            "default_config_filename": ""
+        },
+        "path": {
+            "audio": [
+                "Resources/Sounds"
+            ],
+            "model": [
+                "Resources/Models"
+            ],
+            "particle_emitter": [
+                "Resources/Json/ParticleEmitter"
+            ],
+            "texture": [
+                "Resources/Textures"
+            ]
+        }
     }
-  }
 }
