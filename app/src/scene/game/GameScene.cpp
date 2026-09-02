@@ -25,6 +25,7 @@ void GameScene::Initialize()
     pCubemapSystem_ = std::any_cast<CubemapSystem*>(pArgs_->Get("CubemapSystem"));
     pDx12_ = std::any_cast<DirectX12*>(pArgs_->Get("DirectX12"));
     pInputMapperUI_ = std::any_cast<InputMapper<InputActionUI>*>(pArgs_->Get("InputMapperUI"));
+	pJSONIO_ = JSONIO::GetInstance();
 
     /// Canvasの初期化
     {
@@ -53,15 +54,8 @@ void GameScene::Initialize()
     // スカイボックスの初期化
     this->InitializeSkybox();
 
-    mapData_.resize(mapHeight_);
-    for (int y = 0; y < mapHeight_; ++y)
-    {
-        mapData_[y].resize(mapWidth_);
-        for (int x = 0; x < mapWidth_; ++x)
-        {
-            mapData_[y][x] = 0;
-        }
-    }
+	// マップデータの読み込み
+    MapLoad("test_map.json");
 
     // スプライトの初期化
     this->InitializeSprites();
@@ -193,6 +187,7 @@ void GameScene::MapEdit()
                 // クリックされたら選択中のパレット ID を書き込み、即座にスプライトを更新
                 mapData_[y][x] = currentSelectType;
                 UpdateTileSprite(x, y);
+                pJSONIO_->Save(savePath_, mapData_);
             }
 
             // ホバー中にドラッグ描画したい場合は以下を追加
@@ -202,6 +197,7 @@ void GameScene::MapEdit()
                 {
                     mapData_[y][x] = currentSelectType;
                     UpdateTileSprite(x, y);
+                    pJSONIO_->Save(savePath_, mapData_);
                 }
             }
 
@@ -215,6 +211,7 @@ void GameScene::MapEdit()
     }
 
     ImGui::Separator();
+	ImGui::PushItemWidth(100);
 	ImGui::DragFloat2("Map Offset", &mapOffset_.x, 1.0f, -1000.0f, 1000.0f);
     ImGui::SameLine();
 	ImGui::DragFloat("Tile Size", &tileSize_, 1.0f, 1.0f, 256.0f) ;
@@ -228,6 +225,7 @@ void GameScene::MapEdit()
 			}
 		}
 	}
+    ImGui::PopItemWidth();
 
     ImGui::End();
 #endif // _DEBUG
@@ -244,4 +242,27 @@ void GameScene::UpdateTileSprite(int x, int y)
     pSpriteTile_[y][x]->SetAnchorPoint({ 0.5f, 0.5f });
     pSpriteTile_[y][x]->SetPosition({ tileSize_ / 2.0f + tileSize_ * x + mapOffset_.x, tileSize_ / 2.0f + tileSize_ * y + mapOffset_.y });
     pSpriteTile_[y][x]->SetSize({ tileSize_, tileSize_ });
+}
+
+void GameScene::MapLoad(const std::string& path)
+{
+    savePath_ = std::string(Path::Resource::kJsonDir) + Path::Json::kMapDir + path.c_str();
+    nlohmann::json mapJson = pJSONIO_->Load(savePath_);
+
+    // JSONからマップサイズを取得してリサイズ
+    mapHeight_ = static_cast<int>(mapJson.size());
+    mapWidth_ = mapHeight_ > 0 ? static_cast<int>(mapJson[0].size()) : 0;
+
+    mapData_.resize(mapHeight_);
+
+    // 2次元配列データを読み込み
+    for (int y = 0; y < mapHeight_; ++y)
+    {
+        mapData_[y].resize(mapWidth_);
+        for (int x = 0; x < mapWidth_; ++x)
+        {
+            // mapJson[y][x] から値を取得して int 型に変換
+            mapData_[y][x] = mapJson[y][x].get<int>();
+        }
+    }
 }

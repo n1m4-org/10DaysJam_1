@@ -187,6 +187,7 @@ namespace Path::Json
 {
     inline constexpr const char* kPopTimeTable = "PopTimeTable.json";
     inline constexpr const char* kScoreReviewerThresholds = "ScoreReviewerThresholds.json";
+    inline constexpr const char* kMapDir = "maps/";
 }
 
 namespace Path {

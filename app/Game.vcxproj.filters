@@ -27,6 +27,7 @@
       <Filter>src\wrapper</Filter>
     </ClCompile>
     <ClCompile Include="src\scene\game\GameScene.cpp" />
+    <ClCompile Include="src\logic\mapCollision\MapCollision.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -108,5 +109,6 @@
     </ClInclude>
     <ClInclude Include="src\scene\game\GameScene.h" />
     <ClInclude Include="src\logic\ConvertNumTex\ConvertNumTex.h" />
+    <ClInclude Include="src\logic\mapCollision\MapCollision.h" />
   </ItemGroup>
 </Project>
