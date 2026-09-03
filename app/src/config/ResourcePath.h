@@ -48,6 +48,23 @@ namespace Path::Image
 
     }
 
+    enum class PlayerTextureNames
+    {
+        back,
+        front,
+        left,
+        right,
+        count
+    };
+
+    inline constexpr const char* kPlayerTextures[static_cast<std::size_t>(PlayerTextureNames::count)] =
+    {
+        "game/player_back.png",
+        "game/player_front.png",
+        "game/player_left.png",
+        "game/player_right.png"
+    };
+
     /// [ パーティクル ]
     inline constexpr const char* kParticleCircle = "particle/circle_256x256_white.dds";
 
