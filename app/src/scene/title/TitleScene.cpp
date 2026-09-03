@@ -14,6 +14,7 @@
 #include <NiGui.h>
 #include <Math/Easing.h>
 #include <Xinput.h>
+#include <drawable/particle/ParticleStorage.h>
 
 void TitleScene::Initialize()
 {
@@ -23,31 +24,12 @@ void TitleScene::Initialize()
     pCubemapSystem_ = std::any_cast<CubemapSystem*>(pArgs_->Get("CubemapSystem"));
     pDx12_ = std::any_cast<DirectX12*>(pArgs_->Get("DirectX12"));
     pInputMapperUI_ = std::any_cast<InputMapper<InputActionUI>*>(pArgs_->Get("InputMapperUI"));
+    pModelManager_ = std::any_cast<ModelManager*>(pArgs_->Get("ModelManager"));
 
     // ゲームアイの初期化
     this->InitializeGameEye();
 
-    /// Canvasの初期化
-    {
-        Canvas::Params params = {};
-        params.name = "TitleCanvas";
-        params.pDx12 = pDx12_;
-        params.pCubemapSystem = pCubemapSystem_;
-        params.pGameEye = gameEye_.get();
-        #ifdef _DEBUG
-        params.pImGuiManager = std::any_cast<ImGuiManager*>(pArgs_->Get("ImGuiManager"));
-        #endif // _DEBUG
-
-        pCanvasBack_ = std::make_unique<Canvas>();
-        pCanvasBack_->Initialize(params);
-
-        params.name = "TitleCanvas2";
-        pCanvasSprite_ = std::make_unique<Canvas>();
-        pCanvasSprite_->Initialize(params);
-
-        pLayer_->AddCanvas(pCanvasBack_.get());
-        pLayer_->AddCanvas(pCanvasSprite_.get());
-    }
+    this->InitializeCanvas();
 
     // スカイボックスの初期化
     this->InitializeSkybox();
@@ -82,6 +64,9 @@ void TitleScene::Initialize()
     pSoundBGM_->SetVolume(0.075f);
     pSoundBGM_->Play(true);
 
+    // パーティクルエミッタの初期化
+    this->InitializeParticleEmitter();
+
     // オープニングアニメーションの初期化と再生
     // - 実時間をもとに再生されるためPlay関数のあとに時間のかかる処理(I/O など)を入れないこと
     pOpeningAnimation_ = std::make_unique<OpeningAnimation>();
@@ -97,6 +82,7 @@ void TitleScene::Finalize()
     pLayer_->RemoveCanvas(pCanvasSprite_.get());
     pCanvasBack_->Finalize();
     pCanvasSprite_->Finalize();
+    pParticleEmitter_->Finalize();
 }
 
 void TitleScene::Update()
@@ -138,11 +124,15 @@ void TitleScene::Update()
     pSpritePressStart_->Update();
     pOpeningAnimation_->Update();
     pRadialBeat_->Update();
+    pParticleEmitter_->Update();
 }
 
 void TitleScene::Draw()
 {
-    CanvasScope canvasScopeBack(pCanvasSprite_.get());
+    CanvasScope canvasScopeWorld(pCanvasWorld_.get());
+    pParticle_->Draw1F();
+
+    CanvasScope canvasScopeUI(pCanvasSprite_.get());
     pSpriteFrameScreen_->Draw1F();
     pSpriteTitle_->Draw1F();
     pSpritePressStart_->Draw1F();
@@ -154,13 +144,12 @@ void TitleScene::InitializeGameEye()
     /// ゲームアイの初期化
     gameEye_ = std::make_unique<GameEye2d>();
     gameEye_->SetName("main");
-    gameEye_->SetPosition({ 0.0f, 15.0f });
-    gameEye_->SetRotation(-1.2f);
 
     /// ゲームアイをセット
     Object3dSystem::GetInstance()->SetGlobalEye(gameEye_.get());
     SpriteSystem::GetInstance()->SetGlobalEye(gameEye_.get());
     LineSystem::GetInstance()->SetGlobalEye(gameEye_.get());
+    ParticleSystem::GetInstance()->SetGlobalEye(gameEye_.get());
     pCubemapSystem_->SetGlobalEye(gameEye_.get());
 }
 
@@ -233,6 +222,47 @@ void TitleScene::InitializePostEffects()
 
     pSeparatedGaussianFilter_->SetSigma(27.0f);
     pMosaic_->GetOption().power = 200.0f;
+}
+
+void TitleScene::InitializeParticleEmitter()
+{
+    IModel* pModel = pModelManager_->Load(Path::Model::kParticlePlane);
+    pParticle_ = ParticleStorage::GetInstance()->CreateParticle();
+    pParticle_->Initialize(pModel);
+
+    ParticleEmitter::Params params = {};
+    params.particle = pParticle_;
+
+    pParticleEmitter_ = std::make_unique<ParticleEmitter>();
+    pParticleEmitter_->Initialize(params);
+}
+
+void TitleScene::InitializeCanvas()
+{
+    Canvas::Params params = {};
+    params.name = "TitleCanvas";
+    params.pDx12 = pDx12_;
+    params.pCubemapSystem = pCubemapSystem_;
+    params.pGameEye = gameEye_.get();
+    #ifdef _DEBUG
+    params.pImGuiManager = std::any_cast<ImGuiManager*>(pArgs_->Get("ImGuiManager"));
+    #endif // _DEBUG
+
+    pCanvasBack_ = std::make_unique<Canvas>();
+    pCanvasBack_->Initialize(params);
+
+    params.name = "TitleCanvasWorld";
+    pCanvasWorld_ = std::make_unique<Canvas>();
+    pCanvasWorld_->Initialize(params);
+
+    params.name = "TitleCanvasUI";
+    params.pGameEye = nullptr;
+    pCanvasSprite_ = std::make_unique<Canvas>();
+    pCanvasSprite_->Initialize(params);
+
+    pLayer_->AddCanvas(pCanvasBack_.get());
+    pLayer_->AddCanvas(pCanvasWorld_.get());
+    pLayer_->AddCanvas(pCanvasSprite_.get());
 }
 
 void TitleScene::UpdateTitleAnimation()

@@ -6,6 +6,7 @@
 #include <Features/Model/Helper/ModelHelper.h>
 #include <NiGui.h>
 #include <config/ResourcePath.h>
+#include <Features/DeltaTimeManager/DeltaTimeManager.h>
 
 #pragma comment(lib, "Ws2_32.lib")
 
@@ -41,6 +42,9 @@ void ThirtySecBeforeDeadline::Initialize()
 
     /// Dissolve用のテクスチャをロード
     pTextureManager_->LoadTexture("noise0.png");
+
+    /// デルタタイムマネージャの初期化
+    DeltaTimeManager::GetInstance()->SetDeltaTime(DeltaTimeChannelReserved::Particle, 1.0f / 60.0f);
 }
 
 void ThirtySecBeforeDeadline::Finalize()
