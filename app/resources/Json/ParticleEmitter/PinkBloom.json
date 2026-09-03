@@ -131,5 +131,8 @@
             "start": 43.41999816894531
         }
     },
+    "textureData": {
+        "texturePath": "resources/models\\particle/Spark.png"
+    },
     "version": 3
 }
