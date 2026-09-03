@@ -461,8 +461,8 @@ void GameScene::MapEdit()
     ImGui::SameLine();
     if (ImGui::DragInt("Map Height", &mapHeight_, 1.0f, 1, 256))
     {
-        mapData_.resize(mapHeight_);
-        signalStrengthMap_.resize(mapHeight_);
+        mapData_.resize(mapHeight_, std::vector<int>(mapWidth_, 0));
+        signalStrengthMap_.resize(mapHeight_, std::vector<int>(mapWidth_, 0));
         UpdateCurrentMap();
         InitializeSprites();
     }
