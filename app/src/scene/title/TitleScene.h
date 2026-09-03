@@ -24,6 +24,7 @@
 #include <logic/input/InputAction.h>
 #include <memory>
 #include <wrapper/InputAwareSprite.h>
+#include <Features/GameEye2d/GameEye2d.h>
 
 /// <summary>
 /// タイトルシーン
@@ -84,7 +85,7 @@ private:
     std::unique_ptr<TransShutter>       pTransShutter_              = nullptr;      // !< シャッター遷移エフェクト
     std::unique_ptr<Canvas>             pCanvasBack_                = nullptr;      // !< タイトルキャンバス
     std::unique_ptr<Canvas>             pCanvasSprite_              = nullptr;      // !< タイトルキャンバス
-    std::unique_ptr<GameEye>            gameEye_                    = {};           // !< ゲームアイ
+    std::unique_ptr<GameEye2d>          gameEye_                    = {};           // !< ゲームアイ
     std::unique_ptr<Sprite>             pSpriteTitle_               = nullptr;      // !< タイトル
     std::unique_ptr<Sprite>             pSpriteFrameScreen_         = nullptr;      // !< タイトル
     std::unique_ptr<Sprite>             pSpritePressStart_          = nullptr;      // !< メニュー
