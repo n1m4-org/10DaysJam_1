@@ -80,9 +80,11 @@ void TitleScene::Finalize()
     gameEye_.reset();
     pLayer_->RemoveCanvas(pCanvasBack_.get());
     pLayer_->RemoveCanvas(pCanvasSprite_.get());
+    pLayer_->RemoveCanvas(pCanvasWorld_.get());
     pCanvasBack_->Finalize();
     pCanvasSprite_->Finalize();
-    pParticleEmitter_->Finalize();
+	pCanvasWorld_->Finalize();
+    pParticleEmitter_->Finalize();;
 }
 
 void TitleScene::Update()
