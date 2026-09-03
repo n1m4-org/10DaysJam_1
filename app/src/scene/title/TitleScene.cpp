@@ -267,6 +267,6 @@ void TitleScene::ChangeToGameScene()
     pSoundStartButton_->Play();
     pRadialBeat_->Start(1.0f);
     pTransShutter_ = std::make_unique<TransShutter>();
-    pSceneManager_->ReserveScene("GameScene", "LoadingScreen", std::move(pTransShutter_));
+    pSceneManager_->ReserveScene("GameScene", std::move(pTransShutter_));
     isChangingScene_ = true;
 }

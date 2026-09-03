@@ -1,6 +1,7 @@
 #include "SceneFactory.h"
 
 #include <scene/title/TitleScene.h>
+#include <scene/game/GameScene.h>
 #include <Utility/ConvertString/ConvertString.h>
 
 #include <cassert>
@@ -14,6 +15,7 @@ SceneFactory::SceneFactory()
 {
     // シーンの登録
     sceneCreators_["TitleScene"]        = [](ISceneArgs* args) { return std::make_unique<TitleScene>(args); };
+    sceneCreators_["GameScene"]         = [](ISceneArgs* args) { return std::make_unique<GameScene>(args); };
 }
 
 std::unique_ptr<SceneBase> SceneFactory::Create(const std::string& sceneName, ISceneArgs* pArgs)
