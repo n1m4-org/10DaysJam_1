@@ -59,10 +59,10 @@ namespace Path::Image
 
     inline constexpr const char* kPlayerTextures[static_cast<std::size_t>(PlayerTextureNames::count)] =
     {
-        "game/player_back.png",
-        "game/player_front.png",
-        "game/player_left.png",
-        "game/player_right.png"
+        "player/player_back.png",
+        "player/player_front.png",
+        "player/player_left.png",
+        "player/player_right.png"
     };
 
     /// [ パーティクル ]
