@@ -17,8 +17,8 @@ void Router::Initialize()
 	isDynamic_ = false;
 
 	pSprite_ = std::make_unique<Sprite>();
-	pSprite_->Initialize(Path::Image::InGame::kTestTile);
-	pSprite_->SetColor({ 1.0f, 0.8f, 0.2f, 1.0f }); // 仮置き：黄色/橙色
+	pSprite_->Initialize(Path::Image::InGame::kRouter);
+	//pSprite_->SetColor({ 1.0f, 0.8f, 0.2f, 1.0f }); // 仮置き：黄色/橙色
 }
 
 void Router::Update()

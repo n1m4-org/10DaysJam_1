@@ -75,12 +75,21 @@ public:
 		return 0.0f;
 	}
 
+	void ApplyRotationToSprite()
+	{
+		if (pSprite_)
+		{
+			float rotationRad = GetRotationAngleRad();
+			pSprite_->SetRotation(rotationRad);
+		}
+	}
+
 
 protected:
     std::unique_ptr<Sprite> pSprite_ = nullptr;
 	Vector2Int position_ = { 0, 0 };
 	Vector2Int targetPosition_ = { 0, 0 };
-	Vector2Int angle_ = { 0, 1 };
+	Vector2Int angle_ = { 0, -1 };
 	Vector2 size_ = { 100.0f, 100.0f };
 	ObjectType2d objectType_ = ObjectType2d::None;
 	bool isDynamic_ = false;

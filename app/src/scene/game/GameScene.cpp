@@ -49,6 +49,8 @@ void GameScene::Initialize()
         pLayer_->AddCanvas(pCanvasSprite_.get());
     }
 
+    TextureManager* tm = TextureManager::GetInstance();
+    tm->LoadTexture(Path::Image::InGame::kTile);
     // ゲームアイの初期化
     this->InitializeGameEye();
 
@@ -114,7 +116,7 @@ void GameScene::Update()
         }
     }
 
-    // 電波表示タイルの更新 (強度10=濃い黄金色から強度1=非常に薄い黄色へと1段階ごとにグラデーション)
+    // 電波表示タイルの更新 (オブジェクトが乗っていない床マスのみ電波を描画)
     for (int y = 0; y < mapHeight_; ++y)
     {
         for (int x = 0; x < mapWidth_; ++x)
@@ -122,10 +124,22 @@ void GameScene::Update()
             int strength = (y < static_cast<int>(signalStrengthMap_.size()) && x < static_cast<int>(signalStrengthMap_[y].size())) ? signalStrengthMap_[y][x] : 0;
             if (pSignalSpriteTile_[y][x])
             {
-                bool hasSignal = (strength > 0);
-                pSignalSpriteTile_[y][x]->SetEnableDraw(hasSignal);
+                // そのマスにオブジェクト(中継器・ルーター・プレイヤー等)が存在するかチェック
+                bool hasObjectOnTile = false;
+                for (const auto& obj : pMapObjects_)
+                {
+                    if (obj && obj->GetPosition() == Vector2Int{ x, y })
+                    {
+                        hasObjectOnTile = true;
+                        break;
+                    }
+                }
 
-                if (hasSignal)
+                // 電波が存在し、かつオブジェクトが乗っていない床マスのみ電波を描画！
+                bool showSignal = (strength > 0) && !hasObjectOnTile;
+                pSignalSpriteTile_[y][x]->SetEnableDraw(showSignal);
+
+                if (showSignal)
                 {
                     // 強度 1~10 を 0.0f~1.0f に正規化
                     float norm = static_cast<float>(strength - 1) / 9.0f;
@@ -142,7 +156,6 @@ void GameScene::Update()
                     pSignalSpriteTile_[y][x]->SetPosition({ tileSize_ / 2.0f + tileSize_ * x + mapOffset_.x, tileSize_ / 2.0f + tileSize_ * y + mapOffset_.y });
                     pSignalSpriteTile_[y][x]->SetSize({ tileSize_ * 0.70f, tileSize_ * 0.70f });
                     pSignalSpriteTile_[y][x]->Update();
-
                 }
             }
         }
@@ -244,15 +257,18 @@ void GameScene::InitializeSprites()
 
         for (int x = 0; x < mapWidth_; ++x)
         {
-            pSpriteTile_[y][x] = std::make_unique<Sprite>();
-            UpdateTileSprite(x, y);
+            if(!pSpriteTile_[y][x])
+            {
+                pSpriteTile_[y][x] = std::make_unique<Sprite>();
+                UpdateTileSprite(x, y);
 
-            pSignalSpriteTile_[y][x] = std::make_unique<Sprite>();
-            pSignalSpriteTile_[y][x]->Initialize(Path::Image::InGame::kTestTile);
-            pSignalSpriteTile_[y][x]->SetAnchorPoint({ 0.5f, 0.5f });
-            pSignalSpriteTile_[y][x]->SetColor({ 1.0f, 0.8f, 0.05f, 0.45f }); // 電波用黄色（半透明）
-            pSignalSpriteTile_[y][x]->SetPosition({ tileSize_ / 2.0f + tileSize_ * x + mapOffset_.x, tileSize_ / 2.0f + tileSize_ * y + mapOffset_.y });
-            pSignalSpriteTile_[y][x]->SetSize({ tileSize_ * 0.70f, tileSize_ * 0.70f });
+                pSignalSpriteTile_[y][x] = std::make_unique<Sprite>();
+                pSignalSpriteTile_[y][x]->Initialize(Path::Image::InGame::kTestTile);
+                pSignalSpriteTile_[y][x]->SetAnchorPoint({ 0.5f, 0.5f });
+                pSignalSpriteTile_[y][x]->SetColor({ 1.0f, 0.8f, 0.05f, 0.45f }); // 電波用黄色（半透明）
+                pSignalSpriteTile_[y][x]->SetPosition({ tileSize_ / 2.0f + tileSize_ * x + mapOffset_.x, tileSize_ / 2.0f + tileSize_ * y + mapOffset_.y });
+                pSignalSpriteTile_[y][x]->SetSize({ tileSize_ * 0.70f, tileSize_ * 0.70f });
+            }
 
         } 
     }
@@ -311,7 +327,7 @@ void GameScene::MapEdit()
     else
     {
         ImGui::Text("Object Palette");
-        static const char* kObjectNames[] = { "Delete / Clear", "Player (Blue)", "Router (Yellow)", "Repeater (Green)", "AlumiWall (Gray)", "PC (Purple)" };
+        static const char* kObjectNames[] = { "Delete", "Player (Blue)", "Router (Yellow)", "Repeater (Green)", "AlumiWall (Gray)", "PC (Purple)" };
         ImGui::Combo("Object Type", &selectedObjectType, kObjectNames, IM_ARRAYSIZE(kObjectNames));
 
         if (selectedObjectType == 2 || selectedObjectType == 3) // Router または Repeater の場合、向き設定を表示
@@ -432,6 +448,24 @@ void GameScene::MapEdit()
 	ImGui::DragFloat2("Map Offset", &mapOffset_.x, 1.0f, -1000.0f, 1000.0f);
     ImGui::SameLine();
 	ImGui::DragFloat("Tile Size", &tileSize_, 1.0f, 1.0f, 256.0f);
+    if (ImGui::DragInt("Map Width", &mapWidth_, 1.0f, 1, 256))
+    {
+        for (int y = 0; y < mapHeight_; ++y)
+        {
+            mapData_[y].resize(mapWidth_, 0);
+            signalStrengthMap_[y].resize(mapWidth_, 0);
+        }
+        UpdateCurrentMap();
+        InitializeSprites();
+    }
+    ImGui::SameLine();
+    if (ImGui::DragInt("Map Height", &mapHeight_, 1.0f, 1, 256))
+    {
+        mapData_.resize(mapHeight_);
+        signalStrengthMap_.resize(mapHeight_);
+        UpdateCurrentMap();
+        InitializeSprites();
+    }
 	if (ImGui::Button("refresh"))
 	{
 		for (int y = 0; y < mapHeight_; ++y)

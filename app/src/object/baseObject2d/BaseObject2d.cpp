@@ -49,7 +49,6 @@ void BaseObject2d::UpdateSpritePosition(float tileSize, const Vector2& mapOffset
 		pSprite_->SetAnchorPoint({ 0.5f, 0.5f });
 		pSprite_->SetPosition(currentRenderPos_);
 		pSprite_->SetSize(size_);
-		pSprite_->SetRotation(GetRotationAngleRad());
 	}
 
 

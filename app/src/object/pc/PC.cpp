@@ -21,8 +21,8 @@ void PC::Initialize()
 	isCleared_ = false;
 
 	pSprite_ = std::make_unique<Sprite>();
-	pSprite_->Initialize(Path::Image::InGame::kTestTile);
-	pSprite_->SetColor({ 0.8f, 0.3f, 0.9f, 1.0f }); // 仮置き：紫色
+	pSprite_->Initialize(Path::Image::InGame::kPC);
+	//pSprite_->SetColor({ 0.8f, 0.3f, 0.9f, 1.0f }); // 仮置き：紫色
 }
 
 void PC::UpdateSignal(bool isReceived, int strength)
@@ -59,12 +59,12 @@ void PC::Update()
 		float factor = 0.5f + 0.5f * std::sin(blinkTimer_ * 3.5f);
 		float easeFactor = factor * factor * (3.0f - 2.0f * factor); // Smoothstep イージング
 
-		Vector4 purpleColor = { 0.8f, 0.3f, 0.9f, 1.0f }; // 基本色：紫
+		Vector4 purpleColor = { 1.0f, 1.0f, 1.0f, 1.0f }; // 基本色：紫
 
 		// 1. クリア達成時 (100% 蓄積完了): 紫 ↔ 黄色 の点滅
 		if (isCleared_)
 		{
-			Vector4 yellowTarget = { 1.0f, 0.9f, 0.1f, 1.0f };
+			Vector4 yellowTarget = { 0.2f, 1.0f, 0.1f, 1.0f };
 			Vector4 color = {
 				purpleColor.x + (yellowTarget.x - purpleColor.x) * easeFactor,
 				purpleColor.y + (yellowTarget.y - purpleColor.y) * easeFactor,
@@ -76,7 +76,7 @@ void PC::Update()
 		// 2. 電波受信中 (チャージ中): 紫 ↔ 白 の点滅
 		else if (isSignalReceived_)
 		{
-			Vector4 whiteTarget = { 1.0f, 1.0f, 1.0f, 1.0f };
+			Vector4 whiteTarget = { 1.0f, 0.9f, 0.1f, 1.0f } ;
 			Vector4 color = {
 				purpleColor.x + (whiteTarget.x - purpleColor.x) * easeFactor,
 				purpleColor.y + (whiteTarget.y - purpleColor.y) * easeFactor,

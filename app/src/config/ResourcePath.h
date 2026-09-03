@@ -87,6 +87,7 @@ namespace Path::Image
 
         // マップタイル
         inline constexpr const char* kTestTile = "game/tile/Simple.png";
+        inline constexpr const char* kTile = "game/tile/floor.png";
 
 
 		enum class WallType
@@ -126,7 +127,12 @@ namespace Path::Image
             "game/walls/wall_end_L.png",  // kL
             "game/walls/wall_end_R.png",  // kR
             "game/walls/wall_end_T.png",  // kT
-        };      
+        };
+
+		// objects
+		inline constexpr const char* kRouter = "game/objects/router.png";
+		inline constexpr const char* kRepeater = "game/objects/repeater.png";
+		inline constexpr const char* kPC = "game/objects/PC.png";
     }
 
 

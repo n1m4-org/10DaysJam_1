@@ -108,4 +108,4 @@ private:
     CubemapSystem* pCubemapSystem_ = nullptr;      // !< キューブマップシステム
     InputMapper<InputActionUI>* pInputMapperUI_ = nullptr;      // !< 入力マッパー
 	JSONIO* pJSONIO_ = nullptr;      // !< JSONIO
-};
+};
